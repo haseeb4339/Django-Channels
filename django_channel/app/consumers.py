@@ -22,6 +22,7 @@ class MySyncConsumer(SyncConsumer):
 class MyAsyncConsumer(AsyncConsumer):
     async def websocket_connect(self, event):
         print("connection established....")
+        self.number = int(self.scope['url_route']['kwargs'].get('number'))
         await self.send({
             'type':'websocket.accept'
         })
@@ -31,7 +32,7 @@ class MyAsyncConsumer(AsyncConsumer):
        for i in range(1,11):
             await self.send({
                 'type':'websocket.send',
-                'text':f"2 x {i} = {i*2}"
+                'text':f"{self.number} x {i} = {self.number * i}"
             })
             await asyncio.sleep(1)
 
