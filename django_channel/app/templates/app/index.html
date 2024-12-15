@@ -14,7 +14,7 @@
             ws.send('hello from client')
         }
         ws.onmessage = function(event){
-            console.log('message received from server:', event)
+            console.log('message received from server:', event.data)
 
         }
         ws.onerror = function(event){
