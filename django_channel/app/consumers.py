@@ -1,8 +1,8 @@
-from channels.consumer import SyncConsumer
-from channels.consumer import AsyncConsumer
+from channels.consumer import SyncConsumer, AsyncConsumer
 
 
-class MyConsumer(SyncConsumer):
+
+class MySyncConsumer(SyncConsumer):
 
     def websocket_connect(self,event):
         print("connection established....")
