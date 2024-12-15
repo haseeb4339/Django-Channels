@@ -1,6 +1,7 @@
 from channels.consumer import SyncConsumer, AsyncConsumer
 from channels.exceptions import StopConsumer
-
+import asyncio
+from time import sleep
 
 class MySyncConsumer(SyncConsumer):
 
@@ -27,6 +28,13 @@ class MyAsyncConsumer(AsyncConsumer):
 
     async def websocket_receive(self, event):
        print(f"message received...  {event['text']}")
+       for i in range(10):
+            await self.send({
+                'type':'websocket.send',
+                'text':f"Async message {i*2}"
+            })
+            await asyncio.sleep(1)
+
 
     async def websocket_disconnect(self, event):
         print("connection closed...")
