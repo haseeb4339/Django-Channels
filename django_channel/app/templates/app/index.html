@@ -7,5 +7,22 @@
 </head>
 <body>
     <h1>two multiple</h1>
+    <script>
+        var ws = new WebSocket('ws://127.0.0.1:8000/ws/ac/')
+        ws.onopen = function(){
+            console.log('Connected to WebSocket Server')
+            ws.send('hello from client')
+        }
+        ws.onmessage = function(event){
+            console.log('message received from server:', event)
+
+        }
+        ws.onerror = function(event){
+            console.log('error:', event)
+        }
+        ws.onclose = function(){
+            console.log('Connection closed')
+        }
+    </script>
 </body>
 </html>
